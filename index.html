@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Sensibilidade FF</title>
+<style>
+body {
+  background:#0a0a12;
+  color:#fff;
+  font-family: Arial, sans-serif;
+  padding:20px;
+}
+select, button {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
+  font-size:16px;
+}
+.resultado {
+  margin-top:20px;
+  background:#14142a;
+  padding:15px;
+  border-radius:12px;
+}
+</style>
+</head>
+<body>
+
+<h2>📱 Escolha seu celular</h2>
+
+<select id="celular">
+  <option value="">Selecione</option>
+  <option value="Moto G53">Moto G53</option>
+  <option value="Samsung A12">Samsung A12</option>
+  <option value="Redmi Note 12">Redmi Note 12</option>
+</select>
+
+<button onclick="gerar()">Gerar Sensibilidade</button>
+
+<div class="resultado" id="resultado"></div>
+
+<script>
+const celulares = {
+  "Moto G53": { geral:95, redDot:90, mira2x:85, mira4x:75, awm:60, olhadinha:65 },
+  "Samsung A12": { geral:90, redDot:85, mira2x:80, mira4x:70, awm:55, olhadinha:60 },
+  "Redmi Note 12": { geral:100, redDot:95, mira2x:90, mira4x:80, awm:65, olhadinha:70 }
+};
+
+function gerar() {
+  const modelo = document.getElementById("celular").value;
+  if (!modelo) return;
+
+  const s = celulares[modelo];
+  document.getElementById("resultado").innerHTML = `
+    <h3>🎯 Sensibilidade Ideal</h3>
+    Geral: ${s.geral}<br>
+    Red Dot: ${s.redDot}<br>
+    Mira 2x: ${s.mira2x}<br>
+    Mira 4x: ${s.mira4x}<br>
+    AWM: ${s.awm}<br>
+    Olhadinha: ${s.olhadinha}
+  `;
+}
+</script>
+
+</body>
+</html>
